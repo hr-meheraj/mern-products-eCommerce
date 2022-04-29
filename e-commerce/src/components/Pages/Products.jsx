@@ -10,7 +10,7 @@ function Products() {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(5);
-
+  const [count, setCount ] = useState(0);
   const getApi = async (url) => {
     try {
       setLoading(true);
@@ -52,7 +52,7 @@ function Products() {
         const data = await res.data.count;
         const pages = Math.ceil(data / size);
         console.log(pages);
-        setPage(pages);
+        setCount(pages);
       }catch(err){
           console.log('Err here to count ', err);
       }finally{
@@ -61,7 +61,7 @@ function Products() {
   }
   useEffect(() => {
     getPageApi();
-  }, []);
+  }, [size]);
   const handleProductOrder = (product) => {
     if (user) {
       const { name, price } = product;
@@ -123,7 +123,13 @@ function Products() {
       </div>
       <div>
         <div>
-
+         {
+             count && [...Array(count).keys()].map(each => {
+                 return (
+                     <button onClick={() => setPage(each)} className={`btn shadow-sm ${each === page ? "btn-primary" : ""}`}>{each + 1} </button>
+                 )
+             })
+         }
           <select onChange={handleChangeOption}>
             <option value="6">6</option>
             <option default value="10">
