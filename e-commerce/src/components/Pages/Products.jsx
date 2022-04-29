@@ -51,6 +51,7 @@ function Products() {
         const res = await axios.get("https://crud-e-commerce.hrmeheraj.repl.co/productsCount");
         const data = await res.data.count;
         const pages = Math.ceil(data / size);
+        console.log(pages);
         setPage(pages);
       }catch(err){
           console.log('Err here to count ', err);
@@ -122,14 +123,7 @@ function Products() {
       </div>
       <div>
         <div>
-          {page &&
-            [...Array(parseInt(page))].keys().map((each) => {
-              return (
-                <button className="btn btn-info" onClick={() => setPage(each)}>
-                  {each + 1}{" "}
-                </button>
-              );
-            })}
+
           <select onChange={handleChangeOption}>
             <option value="6">6</option>
             <option default value="10">
