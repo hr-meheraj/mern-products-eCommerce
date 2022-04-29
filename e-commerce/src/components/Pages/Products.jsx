@@ -24,7 +24,7 @@ function Products() {
   };
   useEffect(() => {
     getApi(
-      `https://crud-e-commerce.hrmeheraj.repl.co/products?size=${size}&page=${page}`
+      `https://gentle-reaches-08178.herokuapp.com/products?size=${size}&page=${page}`
     );
   }, [size, page]);
 
@@ -33,7 +33,7 @@ function Products() {
       const procced = window.confirm("Do you want to delete this product ?");
       if (procced) {
         axios
-          .delete(`https://crud-e-commerce.hrmeheraj.repl.co/products/${id}`)
+          .delete(`https://gentle-reaches-08178.herokuapp.com/products/${id}`)
           .then((res) => {
             console.log(res);
             const remaining = products.filter((product) => product._id !== id);
@@ -48,7 +48,7 @@ function Products() {
   const getPageApi = async () => {
       try{
         setLoading(true);
-        const res = await axios.get("https://crud-e-commerce.hrmeheraj.repl.co/productsCount");
+        const res = await axios.get("https://gentle-reaches-08178.herokuapp.com/productsCount");
         const data = await res.data.count;
         const pages = Math.ceil(data / size);
         console.log(pages);
@@ -72,7 +72,7 @@ function Products() {
         email,
       };
       axios
-        .post("https://crud-e-commerce.hrmeheraj.repl.co/orders", {
+        .post("https://gentle-reaches-08178.herokuapp.com/orders", {
           ...orderInfo,
         })
         .then((res) => console.log(res))

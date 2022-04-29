@@ -11,7 +11,7 @@ function OrderList() {
     try {
       setLoading(true);
       const response = await axios.get(
-        `https://crud-e-commerce.hrmeheraj.repl.co/orders?email=${user.email}`
+        `https://gentle-reaches-08178.herokuapp.com/orders?email=${user.email}`
       );
       setOrderLists(response.data);
       console.log(response.data);

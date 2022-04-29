@@ -1,36 +1,36 @@
 import React from "react";
-import {Toaster, toast} from 'react-hot-toast'
-import axios from 'axios'
+import { Toaster, toast } from "react-hot-toast";
+import axios from "axios";
 function UploadProduct() {
-    const handleProductSubmit = (event) => {
-        event.preventDefault();
-        const name = event.target.name.value;
-        const price = event.target.price.value;
-        const product = {name, price};
-        axios.post('https://crud-e-commerce.hrmeheraj.repl.co/products',{
-          ...product
-        }).then( data => {
-            if(data.status === 200){
-                toast.success('Successfully Product Uploaded!')
-            }
-        }).catch(err => {
-            toast.success('Something went wrong to upload product')
-        })
-    }
+  const handleProductSubmit = (event) => {
+    event.preventDefault();
+    const name = event.target.name.value;
+    const price = event.target.price.value;
+    const product = { name, price };
+    axios
+      .post("https://gentle-reaches-08178.herokuapp.com/products", {
+        ...product,
+      })
+      .then((data) => {
+        if (data.status === 200) {
+          toast.success("Successfully Product Uploaded!");
+        }
+      })
+      .catch((err) => {
+        toast.success("Something went wrong to upload product");
+      });
+  };
   return (
     <div className="container  mt-5 d-flex justify-content-center">
-        <Toaster
-             position="top-right"
-             reverseOrder={false}
-        />
-      <form onSubmit={handleProductSubmit} className='w-75'>
+      <Toaster position="top-right" reverseOrder={false} />
+      <form onSubmit={handleProductSubmit} className="w-75">
         <div class="mb-3">
           <label htmlFor="name" class="form-label">
-             Product Name
+            Product Name
           </label>
           <input
             type="text"
-            name='name'
+            name="name"
             required
             class="form-control"
             id="name"
@@ -44,7 +44,7 @@ function UploadProduct() {
           <input
             type="number"
             required
-            name='price'
+            name="price"
             class="form-control"
             id="price"
           />
